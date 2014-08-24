@@ -28,11 +28,11 @@ func TestMem(t *testing.T) {
 	w := httptest.NewRecorder()
 	sess := globalSessions.SessionStart(w, r)
 	defer sess.SessionRelease(w)
-	err := sess.Set("username", "astaxie")
+	err := sess.Set("username", "mvpmvh")
 	if err != nil {
 		t.Fatal("set error,", err)
 	}
-	if username := sess.Get("username"); username != "astaxie" {
+	if username := sess.Get("username"); username != "mvpmvh" {
 		t.Fatal("get username error")
 	}
 	if cookiestr := w.Header().Get("Set-Cookie"); cookiestr == "" {

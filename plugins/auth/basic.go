@@ -15,8 +15,8 @@
 // Package auth provides handlers to enable basic auth support.
 // Simple Usage:
 //	import(
-//		"github.com/astaxie/beego"
-//		"github.com/astaxie/beego/plugins/auth"
+//		"github.com/mvpmvh/beego"
+//		"github.com/mvpmvh/beego/plugins/auth"
 //	)
 //
 //	func main(){
@@ -28,7 +28,7 @@
 //
 // Advanced Usage:
 //	func SecretAuth(username, password string) bool {
-//		return username == "astaxie" && password == "helloBeego"
+//		return username == "mvpmvh" && password == "helloBeego"
 //	}
 //	authPlugin := auth.NewBasicAuthenticator(SecretAuth, "Authorization Required")
 //	beego.InsertFilter("*", beego.BeforeRouter,authPlugin)
@@ -39,8 +39,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/context"
+	"github.com/mvpmvh/beego"
+	"github.com/mvpmvh/beego/context"
 )
 
 var defaultRealm = "Authorization Required"

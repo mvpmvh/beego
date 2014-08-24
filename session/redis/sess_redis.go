@@ -20,8 +20,8 @@
 //
 // Usage:
 // import(
-//   _ "github.com/astaxie/beego/session/redis"
-//   "github.com/astaxie/beego/session"
+//   _ "github.com/mvpmvh/beego/session/redis"
+//   "github.com/mvpmvh/beego/session"
 // )
 //
 //	func init() {
@@ -38,7 +38,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/astaxie/beego/session"
+	"github.com/mvpmvh/beego/session"
 
 	"github.com/garyburd/redigo/redis"
 )
@@ -123,7 +123,7 @@ type RedisProvider struct {
 
 // init redis session
 // savepath like redis server addr,pool size,password
-// e.g. 127.0.0.1:6379,100,astaxie
+// e.g. 127.0.0.1:6379,100,mvpmvh
 func (rp *RedisProvider) SessionInit(maxlifetime int64, savePath string) error {
 	rp.maxlifetime = maxlifetime
 	configs := strings.Split(savePath, ",")

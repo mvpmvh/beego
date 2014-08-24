@@ -18,7 +18,7 @@
 //
 //	import (
 //		"fmt"
-//		"github.com/astaxie/beego/orm"
+//		"github.com/mvpmvh/beego/orm"
 //		_ "github.com/go-sql-driver/mysql" // import your used driver
 //	)
 //
@@ -38,7 +38,7 @@
 //		// insert
 //		id, err := o.Insert(&user)
 //		// update
-//		user.Name = "astaxie"
+//		user.Name = "mvpmvh"
 //		num, err := o.Update(&user)
 //		// read one
 //		u := User{Id: user.Id}

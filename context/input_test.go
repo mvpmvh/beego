@@ -21,7 +21,7 @@ import (
 )
 
 func TestParse(t *testing.T) {
-	r, _ := http.NewRequest("GET", "/?id=123&isok=true&ft=1.2&ol[0]=1&ol[1]=2&ul[]=str&ul[]=array&user.Name=astaxie", nil)
+	r, _ := http.NewRequest("GET", "/?id=123&isok=true&ft=1.2&ol[0]=1&ol[1]=2&ul[]=str&ul[]=array&user.Name=mvpmvh", nil)
 	beegoInput := NewInput(r)
 	beegoInput.ParseFormOrMulitForm(1 << 20)
 
@@ -65,7 +65,7 @@ func TestParse(t *testing.T) {
 	}
 	user := User{}
 	err = beegoInput.Bind(&user, "user")
-	if err != nil || user.Name != "astaxie" {
+	if err != nil || user.Name != "mvpmvh" {
 		t.Fatal("user should has name")
 	}
 	fmt.Println(user)

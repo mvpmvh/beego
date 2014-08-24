@@ -389,7 +389,7 @@ func TestCRUD(t *testing.T) {
 	throwFail(t, AssertIs(u.Created.In(DefaultTimeLoc), user.Created.In(DefaultTimeLoc), test_Date))
 	throwFail(t, AssertIs(u.Updated.In(DefaultTimeLoc), user.Updated.In(DefaultTimeLoc), test_DateTime))
 
-	user.UserName = "astaxie"
+	user.UserName = "mvpmvh"
 	user.Profile = profile
 	num, err := dORM.Update(user)
 	throwFail(t, err)
@@ -398,10 +398,10 @@ func TestCRUD(t *testing.T) {
 	u = &User{Id: user.Id}
 	err = dORM.Read(u)
 	throwFailNow(t, err)
-	throwFail(t, AssertIs(u.UserName, "astaxie"))
+	throwFail(t, AssertIs(u.UserName, "mvpmvh"))
 	throwFail(t, AssertIs(u.Profile.Id, profile.Id))
 
-	u = &User{UserName: "astaxie", Password: "pass"}
+	u = &User{UserName: "mvpmvh", Password: "pass"}
 	err = dORM.Read(u, "UserName")
 	throwFailNow(t, err)
 	throwFailNow(t, AssertIs(id, 1))
@@ -482,8 +482,8 @@ func TestInsertTestData(t *testing.T) {
 	throwFail(t, AssertIs(id, 3))
 
 	user = NewUser()
-	user.UserName = "astaxie"
-	user.Email = "astaxie@gmail.com"
+	user.UserName = "mvpmvh"
+	user.Email = "mvpmvh@gmail.com"
 	user.Password = "password"
 	user.Status = 2
 	user.IsStaff = true
@@ -780,7 +780,7 @@ func TestOrderBy(t *testing.T) {
 	throwFail(t, err)
 	throwFail(t, AssertIs(num, 1))
 
-	num, err = qs.OrderBy("-profile__age").Filter("user_name", "astaxie").Count()
+	num, err = qs.OrderBy("-profile__age").Filter("user_name", "mvpmvh").Count()
 	throwFail(t, err)
 	throwFail(t, AssertIs(num, 1))
 }
@@ -793,7 +793,7 @@ func TestAll(t *testing.T) {
 	throwFailNow(t, AssertIs(num, 3))
 
 	throwFail(t, AssertIs(users[0].UserName, "slene"))
-	throwFail(t, AssertIs(users[1].UserName, "astaxie"))
+	throwFail(t, AssertIs(users[1].UserName, "mvpmvh"))
 	throwFail(t, AssertIs(users[2].UserName, "nobody"))
 
 	var users2 []User
@@ -803,7 +803,7 @@ func TestAll(t *testing.T) {
 	throwFailNow(t, AssertIs(num, 3))
 
 	throwFailNow(t, AssertIs(users2[0].UserName, "slene"))
-	throwFailNow(t, AssertIs(users2[1].UserName, "astaxie"))
+	throwFailNow(t, AssertIs(users2[1].UserName, "mvpmvh"))
 	throwFailNow(t, AssertIs(users2[2].UserName, "nobody"))
 
 	qs = dORM.QueryTable("user")
@@ -812,7 +812,7 @@ func TestAll(t *testing.T) {
 	throwFailNow(t, AssertIs(num, 3))
 	throwFailNow(t, AssertIs(len(users2), 3))
 	throwFailNow(t, AssertIs(users2[0].UserName, "slene"))
-	throwFailNow(t, AssertIs(users2[1].UserName, "astaxie"))
+	throwFailNow(t, AssertIs(users2[1].UserName, "mvpmvh"))
 	throwFailNow(t, AssertIs(users2[2].UserName, "nobody"))
 	throwFailNow(t, AssertIs(users2[0].Id, 0))
 	throwFailNow(t, AssertIs(users2[1].Id, 0))
@@ -905,7 +905,7 @@ func TestValuesFlat(t *testing.T) {
 	throwFail(t, AssertIs(num, 3))
 	if num == 3 {
 		throwFail(t, AssertIs(list[0], "slene"))
-		throwFail(t, AssertIs(list[1], "astaxie"))
+		throwFail(t, AssertIs(list[1], "mvpmvh"))
 		throwFail(t, AssertIs(list[2], "nobody"))
 	}
 }
@@ -957,8 +957,8 @@ func TestRelatedSel(t *testing.T) {
 	throwFailNow(t, AssertIs(num, 4))
 
 	throwFailNow(t, AssertIs(posts[0].User.UserName, "slene"))
-	throwFailNow(t, AssertIs(posts[1].User.UserName, "astaxie"))
-	throwFailNow(t, AssertIs(posts[2].User.UserName, "astaxie"))
+	throwFailNow(t, AssertIs(posts[1].User.UserName, "mvpmvh"))
+	throwFailNow(t, AssertIs(posts[2].User.UserName, "mvpmvh"))
 	throwFailNow(t, AssertIs(posts[3].User.UserName, "nobody"))
 }
 
@@ -969,24 +969,24 @@ func TestReverseQuery(t *testing.T) {
 	throwFailNow(t, AssertIs(profile.Age, 30))
 
 	profile = Profile{}
-	err = dORM.QueryTable("user_profile").Filter("User__UserName", "astaxie").One(&profile)
+	err = dORM.QueryTable("user_profile").Filter("User__UserName", "mvpmvh").One(&profile)
 	throwFailNow(t, err)
 	throwFailNow(t, AssertIs(profile.Age, 30))
 
 	var user User
 	err = dORM.QueryTable("user").Filter("Posts__Title", "Examples").One(&user)
 	throwFailNow(t, err)
-	throwFailNow(t, AssertIs(user.UserName, "astaxie"))
+	throwFailNow(t, AssertIs(user.UserName, "mvpmvh"))
 
 	user = User{}
-	err = dORM.QueryTable("user").Filter("Posts__User__UserName", "astaxie").Limit(1).One(&user)
+	err = dORM.QueryTable("user").Filter("Posts__User__UserName", "mvpmvh").Limit(1).One(&user)
 	throwFailNow(t, err)
-	throwFailNow(t, AssertIs(user.UserName, "astaxie"))
+	throwFailNow(t, AssertIs(user.UserName, "mvpmvh"))
 
 	user = User{}
-	err = dORM.QueryTable("user").Filter("Posts__User__UserName", "astaxie").RelatedSel().Limit(1).One(&user)
+	err = dORM.QueryTable("user").Filter("Posts__User__UserName", "mvpmvh").RelatedSel().Limit(1).One(&user)
 	throwFailNow(t, err)
-	throwFailNow(t, AssertIs(user.UserName, "astaxie"))
+	throwFailNow(t, AssertIs(user.UserName, "mvpmvh"))
 	throwFailNow(t, AssertIs(user.Profile == nil, false))
 	throwFailNow(t, AssertIs(user.Profile.Age, 30))
 
@@ -1018,21 +1018,21 @@ func TestReverseQuery(t *testing.T) {
 
 	tags = []*Tag{}
 	num, err = dORM.QueryTable("tag").Filter("Posts__Post__Title", "Introduction").
-		Filter("BestPost__User__UserName", "astaxie").All(&tags)
+		Filter("BestPost__User__UserName", "mvpmvh").All(&tags)
 	throwFailNow(t, err)
 	throwFailNow(t, AssertIs(num, 1))
 	throwFailNow(t, AssertIs(tags[0].Name, "golang"))
 
 	tags = []*Tag{}
 	num, err = dORM.QueryTable("tag").Filter("Posts__Post__Title", "Introduction").
-		Filter("BestPost__User__UserName", "astaxie").RelatedSel().All(&tags)
+		Filter("BestPost__User__UserName", "mvpmvh").RelatedSel().All(&tags)
 	throwFailNow(t, err)
 	throwFailNow(t, AssertIs(num, 1))
 	throwFailNow(t, AssertIs(tags[0].Name, "golang"))
 	throwFailNow(t, AssertIs(tags[0].BestPost == nil, false))
 	throwFailNow(t, AssertIs(tags[0].BestPost.Title, "Examples"))
 	throwFailNow(t, AssertIs(tags[0].BestPost.User == nil, false))
-	throwFailNow(t, AssertIs(tags[0].BestPost.User.UserName, "astaxie"))
+	throwFailNow(t, AssertIs(tags[0].BestPost.User.UserName, "mvpmvh"))
 }
 
 func TestLoadRelated(t *testing.T) {
@@ -1051,7 +1051,7 @@ func TestLoadRelated(t *testing.T) {
 	num, err = dORM.LoadRelated(&user, "Posts", true)
 	throwFailNow(t, err)
 	throwFailNow(t, AssertIs(len(user.Posts), 2))
-	throwFailNow(t, AssertIs(user.Posts[0].User.UserName, "astaxie"))
+	throwFailNow(t, AssertIs(user.Posts[0].User.UserName, "mvpmvh"))
 
 	num, err = dORM.LoadRelated(&user, "Posts", true, 1)
 	throwFailNow(t, err)
@@ -1081,13 +1081,13 @@ func TestLoadRelated(t *testing.T) {
 	throwFailNow(t, err)
 	throwFailNow(t, AssertIs(num, 1))
 	throwFailNow(t, AssertIs(profile.User == nil, false))
-	throwFailNow(t, AssertIs(profile.User.UserName, "astaxie"))
+	throwFailNow(t, AssertIs(profile.User.UserName, "mvpmvh"))
 
 	num, err = dORM.LoadRelated(&profile, "User", true)
 	throwFailNow(t, err)
 	throwFailNow(t, AssertIs(num, 1))
 	throwFailNow(t, AssertIs(profile.User == nil, false))
-	throwFailNow(t, AssertIs(profile.User.UserName, "astaxie"))
+	throwFailNow(t, AssertIs(profile.User.UserName, "mvpmvh"))
 	throwFailNow(t, AssertIs(profile.User.Profile.Age, profile.Age))
 
 	// load rel one to one
@@ -1118,13 +1118,13 @@ func TestLoadRelated(t *testing.T) {
 	throwFailNow(t, err)
 	throwFailNow(t, AssertIs(num, 1))
 	throwFailNow(t, AssertIs(post.User == nil, false))
-	throwFailNow(t, AssertIs(post.User.UserName, "astaxie"))
+	throwFailNow(t, AssertIs(post.User.UserName, "mvpmvh"))
 
 	num, err = dORM.LoadRelated(&post, "User", true)
 	throwFailNow(t, err)
 	throwFailNow(t, AssertIs(num, 1))
 	throwFailNow(t, AssertIs(post.User == nil, false))
-	throwFailNow(t, AssertIs(post.User.UserName, "astaxie"))
+	throwFailNow(t, AssertIs(post.User.UserName, "mvpmvh"))
 	throwFailNow(t, AssertIs(post.User.Profile == nil, false))
 	throwFailNow(t, AssertIs(post.User.Profile.Age, 30))
 
@@ -1146,7 +1146,7 @@ func TestLoadRelated(t *testing.T) {
 	throwFailNow(t, AssertIs(len(post.Tags), 2))
 	throwFailNow(t, AssertIs(post.Tags[0].Name, "golang"))
 	throwFailNow(t, AssertIs(post.Tags[0].BestPost == nil, false))
-	throwFailNow(t, AssertIs(post.Tags[0].BestPost.User.UserName, "astaxie"))
+	throwFailNow(t, AssertIs(post.Tags[0].BestPost.User.UserName, "mvpmvh"))
 
 	// load reverse m2m
 	tag := Tag{Id: 1}
@@ -1502,7 +1502,7 @@ func TestQueryRows(t *testing.T) {
 	throwFailNow(t, AssertIs(ids[0], 2))
 	throwFailNow(t, AssertIs(usernames[0], "slene"))
 	throwFailNow(t, AssertIs(ids[1], 3))
-	throwFailNow(t, AssertIs(usernames[1], "astaxie"))
+	throwFailNow(t, AssertIs(usernames[1], "mvpmvh"))
 	throwFailNow(t, AssertIs(ids[2], 4))
 	throwFailNow(t, AssertIs(usernames[2], "nobody"))
 }

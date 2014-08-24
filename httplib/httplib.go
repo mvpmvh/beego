@@ -14,10 +14,10 @@
 
 // Usage:
 //
-// import "github.com/astaxie/beego/context"
+// import "github.com/mvpmvh/beego/context"
 //
 //	b := httplib.Post("http://beego.me/")
-//	b.Param("username","astaxie")
+//	b.Param("username","mvpmvh")
 //	b.Param("password","123456")
 //	b.PostFile("uploadfile1", "httplib.pdf")
 //	b.PostFile("uploadfile2", "httplib.txt")

@@ -29,7 +29,7 @@ func TestRequired(t *testing.T) {
 	if valid.Required("", "string").Ok {
 		t.Error("\"'\" string should be false")
 	}
-	if !valid.Required("astaxie", "string").Ok {
+	if !valid.Required("mvpmvh", "string").Ok {
 		t.Error("string should be true")
 	}
 	if valid.Required(0, "zero").Ok {

@@ -21,7 +21,7 @@ import (
 )
 
 var header string = `{{define "header"}}
-<h1>Hello, astaxie!</h1>
+<h1>Hello, mvpmvh!</h1>
 {{end}}`
 
 var index string = `<!DOCTYPE html>

@@ -1,16 +1,16 @@
 // Beego (http://beego.me/)
 // @description beego is an open-source, high-performance web framework for the Go programming language.
-// @link        http://github.com/astaxie/beego for the canonical source repository
-// @license     http://github.com/astaxie/beego/blob/master/LICENSE
-// @authors     astaxie
+// @link        http://github.com/mvpmvh/beego for the canonical source repository
+// @license     http://github.com/mvpmvh/beego/blob/master/LICENSE
+// @authors     mvpmvh
 
 package controllers
 
 import (
 	"encoding/json"
 
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/example/beeapi/models"
+	"github.com/mvpmvh/beego"
+	"github.com/mvpmvh/beego/example/beeapi/models"
 )
 
 type ObjectController struct {
